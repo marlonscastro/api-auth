@@ -10,7 +10,7 @@ interface AuthParams {
 // TokenGenerator
 export class Auth implements AuthUseCase {
     execute = (email: string, pass: string): AuthResponse => {
-        // 3º validar se o usuario existe
+        // 3º validar se o usuario existe atraves do seu email
         // 4º validar se senha confere
     }   
 }
