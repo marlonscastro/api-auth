@@ -1,5 +1,5 @@
 import { UserNotFound } from "../../domain/errors/user-not-found"
-import { httpResponse, serverError } from "../models/http"
+import { httpResponse, serverError, unauthorized } from "../models/http"
 
 export abstract class Controller {
   abstract perform(httpRequest: any): Promise<httpResponse>
@@ -10,12 +10,10 @@ export abstract class Controller {
     } catch (error: any) {
       // Tratamento de erros aqui
       if(error instanceof UserNotFound) {
-        return unauthorized()
+        return unauthorized(error.message)
       }
       return serverError(error.message)
     }
   }
 }
-
-
 

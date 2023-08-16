@@ -6,8 +6,9 @@ export class InMemoryRepository implements Repository {
   constructor() {
     this.users.push({
       id: 1,
-      nome: 'Raul Uesley da Silva',
-      email: 'teste@gmail.com'
+      name: 'Raul Uesley da Silva',
+      email: 'teste@gmail.com',
+      pass: '123456'
     })
   }
 

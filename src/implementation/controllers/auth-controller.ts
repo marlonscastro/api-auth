@@ -1,8 +1,10 @@
-import { badRequest, httpResponse } from "../models/http";
+import { AuthResponse } from "../../domain/models/auth-response";
+import { AuthUseCase } from "../../domain/use-cases/auth";
+import { badRequest, httpResponse, ok } from "../models/http";
 import { Controller } from "./controller";
 
 export class AuthController extends Controller {
-  constructor() { super() }
+  constructor(private readonly auth: AuthUseCase) { super() }
 
   async perform(httpRequest: any): Promise<httpResponse> {
     // 0º validar se os atributos vieram
@@ -12,7 +14,8 @@ export class AuthController extends Controller {
       if (!validEmail) {
         return badRequest('Email Inválido')
       }
-      // Chamar o caso de uso
+      const result =  this.auth.execute(httpRequest.email, httpRequest.pass)
+      return ok(result)
     }
     return badRequest('Está faltando parametros na requisição ou existe parametros inválidos')
   }
