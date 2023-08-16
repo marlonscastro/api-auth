@@ -11,8 +11,8 @@ export class AuthController extends Controller {
       const validEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(httpRequest.body.email)
       if (!validEmail) {
         return badRequest('Email Inválido')
-        // Chamar o caso de uso
       }
+      // Chamar o caso de uso
     }
     return badRequest('Está faltando parametros na requisição ou existe parametros inválidos')
   }
